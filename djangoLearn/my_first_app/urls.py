@@ -1,11 +1,8 @@
 from django.http import HttpResponse
 from django.urls import path
-# from . import views
+from . import views
 from .models import Profile, Author
 
-def my_view(request,*args, **kwargs):
-    print(args, kwargs)
-    return HttpResponse("")
 
 # def author_view(request, id):
 #     author = Author.objects.get(id = id)
@@ -13,12 +10,10 @@ def my_view(request,*args, **kwargs):
 
 #     return HttpResponse(f'{author.name} - {profile.website} - {profile.biography}')
 
-    
-
-
-
 urlpatterns = [
-    path("listado/", my_view),
-    path("detalle/<int:id>", my_view),
+    # path("listado/", views.my_test_view),
+    path("listado/", views.CarListView.as_view()),
+    path("detalle/<int:id>", views.my_view),
+
     # path("autor/<int:id>", author_view)
 ]
