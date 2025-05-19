@@ -16,10 +16,19 @@ class Publisher(models.Model):
     def __str__(self):
         return self.name
     
+class Author(models.Model):
+    name = models.TextField(max_length=25)
+    birth_day = models.DateField()
+
+    def __str__(self):
+        return self.name
+    
 class Book(models.Model):
     title = models.TextField(max_length=25)
     publication_date = models.DateField()
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
+    authors = models.ManyToManyField(Author,related_name="authors")
 
     def __str__(self):
         return self.title
+
