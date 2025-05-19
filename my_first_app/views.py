@@ -1,12 +1,10 @@
 from django.shortcuts import render
+from .models import Car
 
 # Create your views here.
 
 def my_view(request):
-    car_list = [
-        {"title" : "BMW"},
-        {"title" : "Renault"}
-    ]
+    car_list = Car.objects.all()
 
     context = {
         "car_list" : car_list
