@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="max-w-3xl mx-auto my-10 p-8 bg-gradient-to-br from-black-50 to-blue-100 rounded-xl shadow-2xl">
+    <h2 class="text-3xl font-extrabold text-black-900 mb-6 tracking-tight">Resumen de tu Pedido</h2>
+    <div class="mb-6 bg-white p-4 rounded-lg shadow-inner">
+        <p class="text-lg text-gray-700"><span class="font-semibold text-black-600">Cliente:</span> {{order.user}}</p>
+        <p class="text-lg text-gray-700"><span class="font-semibold text-black-600">Fecha del Pedido:</span> {{order.order_date}}</p>
+    </div>
+    <div class="border-t-2 border-black-200 pt-6">
+        <h3 class="text-xl font-bold text-black-800 mb-4">Productos</h3>
+        {% for product_order in order.orderproduct_set.all %}
+            <div class="flex justify-between items-center py-3 px-4 bg-white rounded-md mb-2 hover:bg-black-50 transition duration-200 ease-in-out">
+                <span class="text-gray-800 font-medium">{{ product_order.product.name }}</span>
+                <span class="text-black-600 font-semibold">${{ product_order.product.price }}</span>
+            </div>
+        {% empty %}
+            <p class="text-gray-500 italic text-center py-4">No hay ítems en tu orden</p>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}
+

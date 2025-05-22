@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load tailwind_filters %}
+
+{% block content %}
+<div class="flex gap-10 items-center justify-center min-h-screen bg-gray-100">
+    <div class="w-full max-w-sm p-6 bg-white rounded-lg shadow-md">
+        <h2 class="text-2xl font-semibold text-center text-gray-700">Iniciar Sesión</h2>
+        <form action="" method="post" class="mt-6">
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            <button 
+                type="submit"
+                class="w-full mt-4 rounded-sm bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 focus:ring focus:ring-indigo-300"
+            >
+                Iniciar sesión
+            </button>
+        </form>
+        <p class="mt-4 text-sm text-center text-gray-500">
+            ¿No tienes una cuenta? 
+            <a href="{% url 'register' %}" class="text-indigo-600 hover:underline">Regístrate</a>  
+    </div>
+    <div>
+        <img class="w-200 h-auto rounded-lg shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-xl" src="https://cdn.pixabay.com/photo/2012/03/03/23/02/almonds-21502_960_720.jpg" alt="">
+    </div>
+</div>
+{% endblock content %}
